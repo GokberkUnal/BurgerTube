@@ -39,10 +39,14 @@ struct AdminView: View {
                   
                    
                    NavigationLink(destination:AdminFeedView()){
-                                Text("Next")
+                       Text("Next").foregroundColor(.white)
+                       
                    }.disabled(viewModel.isActive==false).onTapGesture {
                        viewModel.adminControll()
-                   }
+                   }.font(.subheadline)
+                       .padding()
+                       .background(Color(red: 0, green: 0, blue: 0))
+                       .clipShape(Capsule())
                    
                    
                                          

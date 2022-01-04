@@ -14,6 +14,9 @@ class VideoDetailsViewModel: ObservableObject {
     @Published var comments = [Comment]()
     @Published var commentsLoading = false
     @Published var publishedVideoInfo:VideoInfo
+    @Published var pListVM=PListViewModel()
+    @Published var showErrorMessage = false
+
 
 
     
@@ -22,14 +25,20 @@ class VideoDetailsViewModel: ObservableObject {
         
         loadData()
         loadComments()
+        pListVM.loadPLists()
     }
-    
+  
    
     
     func loadData() {
        
         
     }
+    
+    func ifIsFull(_ value:Bool){
+            showErrorMessage=value
+            
+        }
     
     
     func loadComments() {
@@ -96,6 +105,30 @@ class VideoDetailsViewModel: ObservableObject {
  
         print("ADDED COMMENT!")
         commentText = ""
+    }
+    
+    
+    func addToPlayList(playList:PList,videoId:String){
+        
+     
+        
+       let db = Firestore.firestore()
+        do{
+            let _ = db.collection("playlists").document(playList.id ?? "").collection("videos").addDocument(data: ["videoId":videoId])
+    
+    
+            
+        }
+        do{
+            let _ = db.collection("playlists").document(playList.id ?? "").updateData(["videoCount":playList.videoCount+1])
+            
+    
+    
+            
+        }
+        pListVM.loadPLists()
+        
+        
     }
     
 }

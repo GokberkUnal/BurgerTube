@@ -42,7 +42,6 @@ struct VideoDetailsView: View {
 struct VideoActions: View {
     @ObservedObject var viewModel: VideoDetailsViewModel
     
-    
     var body: some View {
         HStack {
             Button {
@@ -72,6 +71,31 @@ struct VideoActions: View {
             }
             .padding(10)
             
+            
+            Spacer()
+            Menu{
+                
+                ForEach(viewModel.pListVM.pList) { pList in
+                    Button(pList.pName ?? "", action:{ if(pList.videoCount<10){viewModel.addToPlayList(playList: pList, videoId: viewModel.publishedVideoInfo.id ?? "")}
+                        else{
+                            viewModel.ifIsFull(true)
+                        }
+                       
+                    }
+                    )
+                }
+                    
+            }label: {
+                Label {
+
+                } icon: {
+                    Image(systemName: "plus")
+                }
+            }
+            
+        }.alert("Liste Dolu!",
+                  isPresented: $viewModel.showErrorMessage) {
+                       Button("tamam", role: .cancel) { }
         }
     }
 }

@@ -112,7 +112,5 @@ struct AppBar: View {
         
     }
     
-    func searchHandler() {
-        
-    }
+    
 }

@@ -1,47 +1,41 @@
 //
-//  NewVideo.swift
+//  NewPListView.swift
 //  BurgerTube
 //
-//  Created by Orhan Gökberk Ünal on 19.12.2021.
+//  Created by Orhan Gökberk Ünal on 3.01.2022.
 //
 
 import SwiftUI
 
-struct NewVideo: View {
-    @ObservedObject var vm:FeedViewModel
-    @State var videoThumb: String = ""
-    @State var videoTitle: String = ""
+struct NewPListView: View {
+    @ObservedObject var vm:PListViewModel
+    @State var pListName: String = ""
+    @State var pListDescription: String = ""
+    
        let verticalPaddingForForm = 40.0
        var body: some View {
            ZStack {
                Color.red
                VStack(spacing: CGFloat(verticalPaddingForForm)) {
-                   Text("Yeni video ekle")
+                   Text("Yeni PlayList")
                        .font(.title)
                        .foregroundColor(Color.white)
-                   HStack {
-                      
-                       TextField("Video urlsi", text: $videoThumb)
-                           .foregroundColor(Color.white)
-                   }
-                   .padding()
+                 
+                    TextField("PlayList Adı", text: $pListName)
+                           .foregroundColor(Color.white).padding()
+                           .background(Color.black)
+                           .cornerRadius(10)
+                   TextField("PlayList Açıklaması", text: $pListDescription)
+                       .foregroundColor(Color.white)
+                       
+                .padding()
                    .background(Color.black)
                    .cornerRadius(10)
                    
-                   HStack {
-                       
-                       TextField("Video başlığı", text: $videoTitle)
-                           .foregroundColor(Color.white)
-                       
-                   }
-                   .padding()
-                   .background(Color.black)
-                   .cornerRadius(10)
                    
                    Button {
-                       vm.addVideo(thumbnail: videoThumb, title: videoTitle)
-                       videoThumb=""
-                       videoTitle=""
+                       vm.addPList(pNameController: pListName,pDescriptionController: pListDescription)
+                     
                    } label: {
                        Text("Add")
                            .font(.subheadline)
@@ -50,6 +44,7 @@ struct NewVideo: View {
                            .padding()
                            .background(Color(red: 0, green: 0, blue: 0))
                            .clipShape(Capsule())
+                           
                    }
                 
                    
@@ -57,6 +52,6 @@ struct NewVideo: View {
                
            }
        };
-    }
+}
 
 

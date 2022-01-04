@@ -12,8 +12,8 @@ struct VideoInfo: Identifiable, Codable {
     let id: String?
     let title: String?
     let thumbnail: String?
-    var like:Int
-    var dislike:Int
+    var like: Int
+    var dislike: Int
     
     var titleOrDefault: String {
         return title ?? "-"

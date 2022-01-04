@@ -15,14 +15,17 @@ struct PopupMenu: View {
     var body: some View {
 HStack{
     NavigationLink(destination: {NewVideo(vm: viewmodel)}, label: {
-                Text("+")
-            }).padding(.trailing)
-    
+        Image(systemName: "plus")
+            })    
         
         NavigationLink(destination:{ AdminView()}) {
-                Text("A")
+            Image(systemName: "person.circle.fill")
             }
+    NavigationLink(destination: {PListView()}) {
+        Image(systemName: "list.bullet.rectangle")
+        }
                 }
+        
             
         
         

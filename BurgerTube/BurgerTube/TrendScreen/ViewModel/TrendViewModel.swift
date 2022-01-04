@@ -44,11 +44,4 @@ class TrendViewModel: ObservableObject {
             }
         }
     }
-    
-
-    
-
-  
-    
-    
 }
